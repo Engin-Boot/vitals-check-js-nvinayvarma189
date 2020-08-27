@@ -1,14 +1,8 @@
 const expect = require('chai').expect;
+const {isBPMOk, isSpo2Ok, isRespRateOk} = require('./utils');
 
 function vitalsAreOk(bpm, spo2, respRate) {
-    if(bpm < 70 || bpm > 150) {
-        return false;
-    } else if(spo2 < 90) {
-        return false;
-    } else if(respRate < 30 || respRate > 95) {
-        return false;
-    }
-    return true;
+    return (isBPMOk(bpm) && isSpo2Ok(spo2) && isRespRateOk(respRate));
 }
 
 expect(vitalsAreOk(100, 95, 70)).to.be.true;
